@@ -8,6 +8,10 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  async function signUpWithEmail() {
+    console.log("sign up");
+  }
+
   const onSignUp = () => {};
 
   const onSignIn = () => {};
