@@ -4,7 +4,8 @@ import Button from "@/components/Button";
 import { defaultPizzaImage } from "@/components/ProductListItem";
 import { Colors } from "@/constants/Colors";
 import * as ImagePicker from "expo-image-picker";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
+import { useInsertProduct } from "@/api/products";
 
 export default function CreateProductScreen() {
   const [name, setName] = useState("");
@@ -14,6 +15,10 @@ export default function CreateProductScreen() {
 
   const { id } = useLocalSearchParams();
   const isUpdating = !!id; // return true if id is defined
+
+  const { mutate: insertProduct } = useInsertProduct();
+
+  const router = useRouter();
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -68,6 +73,16 @@ export default function CreateProductScreen() {
     if (!validateInputs()) {
       return;
     }
+
+    insertProduct(
+      { name, price: parseFloat(price), image },
+      {
+        onSuccess: () => {
+          resetFields();
+          router.back();
+        },
+      }
+    );
 
     resetFields();
   };
