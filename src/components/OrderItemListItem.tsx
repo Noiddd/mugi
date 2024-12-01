@@ -6,7 +6,7 @@ import RemoteImage from "./RemoteImage";
 import { Colors } from "@/constants/Colors";
 
 type OrderItemListItemProps = {
-  item: { products: Tables<"products"> } & Tables<"order_items">;
+  item: Tables<"order_items">;
 };
 
 const OrderItemListItem = ({ item }: OrderItemListItemProps) => {
