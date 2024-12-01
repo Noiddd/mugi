@@ -84,7 +84,7 @@ export default function ProductDetailsScreen() {
         style={styles.image}
       />
 
-      <Text style={styles.title}>${product.name}</Text>
+      <Text style={styles.title}>{product.name}</Text>
       <Text style={styles.price}>${product.price}</Text>
     </View>
   );
