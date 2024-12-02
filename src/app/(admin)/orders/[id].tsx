@@ -12,12 +12,15 @@ import OrderItemListItem from "@/components/OrderItemListItem";
 import { Colors } from "@/constants/Colors";
 import { OrderStatusList } from "@/types";
 import { useOrderDetails, useUpdateOrder } from "@/api/orders";
+import { useUpdateOrderSubscription } from "@/api/orders/subscriptions";
 
 export default function OrderDetailsScreen() {
   const { id: idString } = useLocalSearchParams();
   const id = parseFloat(typeof idString === "string" ? idString : idString[0]);
 
   const { data: order, isLoading, error } = useOrderDetails(id);
+
+  useUpdateOrderSubscription(id);
 
   const { mutate: updateOrder } = useUpdateOrder();
 
